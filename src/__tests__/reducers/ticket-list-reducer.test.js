@@ -33,4 +33,24 @@ describe('ticketListReducer', () => {
       }
     });
   });
+
+  test('Should successfully update new ticket data to masterTicketList', () => {
+    const { names, location, issue, id } = ticketData;
+    action = {
+      type: 'ADD_TICKET',
+      names: names,
+      location: location,
+      issue: 'test',
+      id: id
+    };
+
+    expect(ticketListReducer({1: {names: names, location: location, issue: issue, id: id}}, action)).toEqual({
+      [id]: {
+        names: names,
+        location: location,
+        issue: 'test',
+        id: id
+      }
+    });
+  });
 });
